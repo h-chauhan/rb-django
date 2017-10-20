@@ -19,9 +19,5 @@ from rajbhog import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('api.urls'))
+    url(r'^', include('api.urls')),
 ]
-
-urlpatterns += patterns('',
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
-    )
