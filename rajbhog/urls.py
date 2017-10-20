@@ -18,6 +18,6 @@ from django.contrib import admin
 from rajbhog import settings
 
 urlpatterns = [
-    url(r'^$', admin.site.urls),
+    url(r'^', admin.site.urls),
     url(r'^api', include('api.urls')),
 ]
