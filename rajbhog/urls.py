@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from rajbhog import settings
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('api.urls'))
+    url(r'^get/', include('api.urls')),
+    url(r'^', admin.site.urls),
 ]
