@@ -14,21 +14,10 @@ def category_list(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def category_detail(request, pk):
+def product_list(request, pk):
     obj = get_object_or_404(Category, pk=pk)
-    serializer = CategorySerializer(obj)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def product_list(request):
-    objects = Product.objects.all();
+    objects = obj.product_set
     serializer = ProductSerializer(objects, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def product_detail(request, pk):
-    obj = get_object_or_404(Product, pk=pk)
-    serializer = ProductSerializer(obj)
     return Response(serializer.data)
 
 @api_view(['POST'])
