@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'rajbhog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-if os.environ.get('HOME') == 'Heroku':
+if os.environ.get('ENV_TYPE') == 'Heroku':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
