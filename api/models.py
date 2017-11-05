@@ -1,4 +1,5 @@
 from django.db import models
+import smtplib
 
 # Create your models here.
 class Category(models.Model):
@@ -29,6 +30,21 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.pk)
+
+    def save(self, *args, **kwargs):
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.ehlo()
+        server.starttls()
+        server.login('rajbhog.r@gmail.com', 'admin@1234')
+        msg = "\r\n".join([
+            "From: rajbhog.r@gmail.com",
+            "To: rajbhog.r@gmail.com",
+            "Subject: New Order Received",
+            "",
+            "A new order has been received. Please check control panel."
+        ])
+        server.sendmail('rajbhog.r@gmail.com', 'rajbhog.r@gmail.com', msg)
+        super(Order, self).save(*args, **kwargs)
 
 class Item(models.Model):
     product = models.ForeignKey(Product)
